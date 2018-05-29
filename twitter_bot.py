@@ -18,29 +18,17 @@ from twython import Twython, TwythonError
 from tweet_text import *
 # import all functions from helper.py
 from helper import *
-
-# Try to import the variables defined in credentials.py
-# If that does not exist (e.g. on Heroku), fall back to environment variables
-try:
-    from credentials import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
-except ImportError as error:
-    print('Info: {e}'.format(e=error))
-    print('Info: Cannot load credentials.py. Will use environment variables.')
-    try:
-        CONSUMER_KEY = os.environ['CONSUMER_KEY']
-        CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
-        ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-        ACCESS_TOKEN_SECRET = os.environ['ACCESS_TOKEN_SECRET']
-    except KeyError as error:
-        print('Error: {e} not found in environment variables'.format(e=error))
-        print('Error: Could not retrieve credentials from either credentials.py or environment variables. Make sure either is set.')
-        # can't do anything without credentials, so quit
-        sys.exit()
-
+# import cedentials
+import auth
 
 #
 # BOT CODE
 #
+
+CONSUMER_KEY = auth.consumer_key()
+CONSUMER_SECRET = auth.consumer_secret()
+ACCESS_TOKEN = auth.access_token()
+ACCESS_TOKEN_SECRET = auth.access_token_secret()
 
 INTERVAL_MINUTES = 10
 
