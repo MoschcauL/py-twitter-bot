@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # pylint: disable=C0103
 
 """Twitter Bot. Listens for mentions and replies to them."""
